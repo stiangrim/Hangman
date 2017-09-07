@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Hangman</string>
+    <string name="_1_player_button">1 Spiller</string>
+    <string name="statistics">Statistikk</string>
+    <string name="word_to_be_guessed">Ord som skal bli gjettet..</string>
+    <string name="_2_player_button">2 Spiller</string>
+    <string name="choose_category_text">Velg en kategori</string>
+    <string name="correct_words">Riktige ord: 0</string>
+    <string name="hangman_image_content_description">Hangman bilde</string>
+    <string name="flag_of_united_kingdom">Flagget til Storbritannia</string>
+    <string name="flag_of_norway">Flagget til Norge</string>
+    <string name="confirm_word_button">Enter</string>
+    <string name="new_game">Nytt Spill</string>
+    <string name="rules">Regler</string>
+    <string name="rules_text">"Når du går inn i et nytt spill, ser du understreker som representerer ordet du prøver å gjette.\n\nGjett en bokstav ved å klikke på en av bokstavene nederst på skjermen.\nHvis bokstaven eksisterer, vil det dukke opp på alle mulige steder i det "usynlige" ordet. Hvis bokstaven ikke eksisterer, vil hangmanen inkrementeres, og du blir et skritt nærmere å dø.\n\nHver gang du gjetter en bokstav, forsvinner bokstaven - det betyr at du ikke kan gjette den samme bokstaven flere ganger.\n\nHangman vil inkrementeres i følgende rekkefølge: hode, kropp, arm, arm, ben, ben og død."</string>
+    <string name="correct_words_text">Riktige ord:</string>
+    <string name="congratulations">Gratulerer!</string>
+    <string name="correctWord2p">Du har gjettet det riktige ordet! Vil du spille på nytt (2 spiller)?</string>
+    <string name="correctWord1p">Du har gjettet alle ord i denne kategorien. Vil du velge en annen kategori?</string>
+    <string name="alreadyGuessed">Du har allerede gjettet</string>
+    <string name="gameOver">Game Over</string>
+    <string name="youLost">Du tapte.. Det riktige ordet var</string>
+    <string name="tryAgain">Prøve igjen?</string>
+    <string name="yes">Ja</string>
+    <string name="exitToMenu">Tilbake til hovedmeny</string>
+    <string name="words_guessed">Words guessed:</string>
+    <string name="words_not_guessed">Words not guessed:</string>
+</resources>

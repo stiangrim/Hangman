@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>--CATEGORY--Dyr</item>
+        <item>Løve</item>
+        <item>Zebra</item>
+        <item>Apekatt</item>
+        <item>Hund</item>
+        <item>Katt</item>
+        <item>--CATEGORY--Bil</item>
+        <item>Ferrari</item>
+        <item>Volvo</item>
+        <item>Ford</item>
+        <item>Toyota</item>
+        <item>Tesla</item>
+    </string-array>
+</resources>
