@@ -1,7 +1,12 @@
 package com.example.stiangrim.hangman;
 
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PaintDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.stiangrim.hangman.Model.StatisticsHandler;
@@ -21,12 +28,16 @@ import java.util.Random;
 public class Game extends AppCompatActivity {
 
 
-    LinearLayout invisibleWordLayout;
-    LinearLayout possibleLettersFirstRow;
+    /*LinearLayout possibleLettersFirstRow;
     LinearLayout possibleLettersSecondRow;
     LinearLayout possibleLettersThirdRow;
-    LinearLayout possibleLettersFourthRow;
+    LinearLayout possibleLettersFourthRow;*/
+    LinearLayout invisibleWordLayout;
+    TableLayout tableLayout;
     ImageView hangmanImage;
+
+    Drawable red = new PaintDrawable(Color.RED);
+    Drawable green = new PaintDrawable(Color.GREEN);
 
     StringBuilder word;
     String originalWord;
@@ -42,11 +53,8 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        tableLayout = (TableLayout) findViewById(R.id.lettersLayout);
         hangmanImage = (ImageView) findViewById(R.id.hangman_image);
-        possibleLettersFirstRow = (LinearLayout) findViewById(R.id.lettersFirstRow);
-        possibleLettersSecondRow = (LinearLayout) findViewById(R.id.lettersSecondRow);
-        possibleLettersThirdRow = (LinearLayout) findViewById(R.id.lettersThirdRow);
-        possibleLettersFourthRow = (LinearLayout) findViewById(R.id.lettersFourthRow);
 
         words = getWords();
         randomGenerator = new Random();
@@ -67,28 +75,27 @@ public class Game extends AppCompatActivity {
 
     private void placePossibleLetters() {
         String alphabet = getResources().getString(R.string.alphabet);
-        int rowHelper = (int) Math.ceil(alphabet.length() / 4.0);
-        int leftover = rowHelper*4 - alphabet.length();
 
-        for (int i = 0; i < rowHelper; i++) {
-            Button button = getButton(Character.toString(alphabet.charAt(i)));
-            possibleLettersFirstRow.addView(button);
-            addLayoutParams(button);
-        }
-        for (int i = rowHelper; i < rowHelper * 2; i++) {
-            Button button = getButton(Character.toString(alphabet.charAt(i)));
-            possibleLettersSecondRow.addView(button);
-            addLayoutParams(button);
-        }
-        for (int i = rowHelper * 2; i < rowHelper * 3; i++) {
-            Button button = getButton(Character.toString(alphabet.charAt(i)));
-            possibleLettersThirdRow.addView(button);
-            addLayoutParams(button);
-        }
-        for (int i = rowHelper * 3; i < rowHelper * 4 - leftover; i++) {
-            Button button = getButton(Character.toString(alphabet.charAt(i)));
-            possibleLettersFourthRow.addView(button);
-            addLayoutParams(button);
+        int length = (int) Math.ceil(Math.sqrt(alphabet.length()));
+        int counter = 0;
+
+        for (int col = 0; col < length; col++) {
+            TableRow tableRow = new TableRow(this);
+
+            TableRow.LayoutParams tlp = new TableRow.LayoutParams(170, 135);
+            tableRow.setLayoutParams(tlp);
+
+            tableLayout.addView(tableRow);
+
+            for (int row = 0; row < length; row++) {
+                if (counter < alphabet.length()) {
+                    Button button = getButton(Character.toString(alphabet.charAt(counter)));
+                    button.setLayoutParams(tlp);
+
+                    tableRow.addView(button);
+                }
+                counter++;
+            }
         }
     }
 
@@ -100,25 +107,16 @@ public class Game extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (button.getText() != " ") checkLetter(button);
+                if (button.getBackground() != red || button.getBackground() != green)
+                    checkLetter(button);
             }
         });
 
         return button;
     }
 
-    private void addLayoutParams(Button button) {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) button.getLayoutParams();
-        params.width = 130;
-        params.height = 130;
-        button.setLayoutParams(params);
-    }
-
     private void setNewWord() {
-        possibleLettersFirstRow.removeAllViews();
-        possibleLettersSecondRow.removeAllViews();
-        possibleLettersThirdRow.removeAllViews();
-        possibleLettersFourthRow.removeAllViews();
+        tableLayout.removeAllViews();
         invisibleWordLayout.removeAllViews();
         hangmanState = 0;
         correctLetters = 0;
@@ -129,13 +127,12 @@ public class Game extends AppCompatActivity {
         placePossibleLetters();
     }
 
-    public void checkLetter(TextView textView) {
-        char letter = textView.getText().charAt(0);
-
-        //Delete letter
-        textView.setText(" ");
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void checkLetter(Button button) {
+        char letter = button.getText().charAt(0);
 
         if (letterExists(letter)) {
+            button.setBackground(green);
             setLetters(letter);
             if (word.toString().replaceAll(" ", "").length() == correctLetters) {
                 correctWords++;
@@ -148,12 +145,16 @@ public class Game extends AppCompatActivity {
                 }
             }
         } else {
+            button.setBackground(red);
             incrementHangman();
             if (hangmanState == 8) {
                 StatisticsHandler.setLosses(this, 1);
                 openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + originalWord + "'. \n" + getString(R.string.tryAgain), Home.class);
             }
         }
+
+        button.getBackground().setAlpha(50);
+        button.setClickable(false);
     }
 
     private void openAlertDialog(String title, String message, final Class destinationClass) {
@@ -190,7 +191,7 @@ public class Game extends AppCompatActivity {
             if (word.charAt(i) == ' ') {
                 textView.setText(" ");
             } else {
-                textView.setText("_ ");
+                textView.setText(" _ ");
             }
 
             invisibleWordLayout.addView(textView);
