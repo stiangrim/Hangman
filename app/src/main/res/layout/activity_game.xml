@@ -54,15 +54,4 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/correct_words"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/correct_words"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/word_layout"
-        android:layout_marginRight="56dp"
-        app:layout_constraintRight_toRightOf="@+id/hangman_image" />
-
 </android.support.constraint.ConstraintLayout>

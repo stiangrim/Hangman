@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="category">
-        <item>--CATEGORY--Animal</item>
+    <string-array name="words">
         <item>Lion</item>
         <item>Zebra</item>
         <item>Monkey</item>
         <item>Dog</item>
         <item>Cat</item>
-        <item>--CATEGORY--Car</item>
         <item>Ferrari</item>
         <item>Volvo</item>
         <item>Ford</item>

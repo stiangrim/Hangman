@@ -16,7 +16,7 @@
     <string name="correct_words_text">Correct words:</string>
     <string name="congratulations">Congratulations!</string>
     <string name="correctWord2p">You guessed the correct word! Play another 2 Player game?</string>
-    <string name="correctWord1p">You have guessed every word in this category. Do you want to choose another category?</string>
+    <string name="correctWord1p">You have guessed every word. Do you want to play again?</string>
     <string name="alreadyGuessed">You have already guessed</string>
     <string name="gameOver">Game Over</string>
     <string name="youLost">You lost.. The correct word was</string>

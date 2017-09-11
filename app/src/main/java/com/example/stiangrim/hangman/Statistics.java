@@ -1,12 +1,10 @@
 package com.example.stiangrim.hangman;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.stiangrim.hangman.Model.StatisticsHandler;
 
 public class Statistics extends AppCompatActivity {
 

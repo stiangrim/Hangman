@@ -1,13 +1,14 @@
 package com.example.stiangrim.hangman;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import java.util.Locale;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.View;
+
+import java.util.Locale;
 
 public class Home extends AppCompatActivity {
 
@@ -17,27 +18,27 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 
-    public void startNewGame(View view) {
-        Intent intent = new Intent(this, Category.class);
+    public void goToGameActivity(View view) {
+        Intent intent = new Intent(this, Game.class);
         startActivity(intent);
     }
 
-    public void goToStatistics(View view) {
+    public void goToStatisticsActivity(View view) {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
     }
 
-    public void setLanguageToEnglish(View view) {
-        setLocale("");
-    }
-
-    public void goToRules(View view) {
+    public void goToRulesActivity(View view) {
         Intent intent = new Intent(this, Rules.class);
         startActivity(intent);
     }
 
     public void setLanguageToNorwegian(View view) {
         setLocale("nb");
+    }
+
+    public void setLanguageToEnglish(View view) {
+        setLocale("");
     }
 
     private void setLocale(String lang) {

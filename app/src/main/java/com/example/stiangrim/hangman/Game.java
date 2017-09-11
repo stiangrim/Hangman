@@ -2,60 +2,50 @@ package com.example.stiangrim.hangman;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.stiangrim.hangman.Model.StatisticsHandler;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class Game extends AppCompatActivity {
 
 
-    LinearLayout layout;
+    LinearLayout invisibleWordLayout;
     LinearLayout possibleLettersFirstRow;
     LinearLayout possibleLettersSecondRow;
-    ImageView imageView;
-    TextView correctWordsTextView;
+    ImageView hangmanImage;
 
     StringBuilder word;
     String originalWord;
-    ArrayList<String> wordsInCategory;
+    ArrayList<String> words;
     Random randomGenerator;
-    boolean twoPlayer;
     int hangmanState = 0;
     int correctLetters = 0;
     int correctWords = 0;
     List<Character> guessedLetters;
-    String[] toasts = {"Good job!", "Awesome!", "Well done!", "Excellent!", "Amazing!"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        imageView = (ImageView) findViewById(R.id.hangman_image);
+        hangmanImage = (ImageView) findViewById(R.id.hangman_image);
         possibleLettersFirstRow = (LinearLayout) findViewById(R.id.lettersFirstRow);
         possibleLettersSecondRow = (LinearLayout) findViewById(R.id.lettersSecondRow);
-        correctWordsTextView = (TextView) findViewById(R.id.correct_words);
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle.getString("category") != null) {
-            wordsInCategory = getWordsInCategory(bundle.getString("category"));
-            randomGenerator = new Random();
-            updateWordFromArrayList();
-        } else if (bundle.getString("word") != null) {
-            twoPlayer = true;
-            word = new StringBuilder(bundle.getString("word").toUpperCase());
-            originalWord = word.toString();
-        }
+        words = getWords();
+        randomGenerator = new Random();
+        updateWordFromArrayList();
 
 
         setInvisibleWord();
@@ -63,25 +53,11 @@ public class Game extends AppCompatActivity {
         guessedLetters = new ArrayList<>();
     }
 
-    private ArrayList<String> getWordsInCategory(String category) {
-        String[] rawArray = getResources().getStringArray(R.array.category);
-        ArrayList<String> wordsInCategory = new ArrayList<>();
-        boolean categoryFound = false;
-
-        for (String item : rawArray) {
-            if (categoryFound) {
-                if (!item.contains("--CATEGORY--")) {
-                    wordsInCategory.add(item);
-                } else {
-                    return wordsInCategory;
-                }
-            }
-            if (item.equals("--CATEGORY--" + category)) {
-                categoryFound = true;
-            }
-        }
-
-        return wordsInCategory;
+    private ArrayList<String> getWords() {
+        String[] rawArray = getResources().getStringArray(R.array.words);
+        ArrayList<String> words = new ArrayList<>();
+        Collections.addAll(words, rawArray);
+        return words;
     }
 
     private void placePossibleLetters() {
@@ -116,11 +92,11 @@ public class Game extends AppCompatActivity {
     private void setNewWord() {
         possibleLettersFirstRow.removeAllViews();
         possibleLettersSecondRow.removeAllViews();
-        layout.removeAllViews();
+        invisibleWordLayout.removeAllViews();
         hangmanState = 0;
         correctLetters = 0;
         guessedLetters = new ArrayList<>();
-        imageView.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
+        hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
         updateWordFromArrayList();
         setInvisibleWord();
         placePossibleLetters();
@@ -138,21 +114,9 @@ public class Game extends AppCompatActivity {
                 correctWords++;
                 StatisticsHandler.setWins(this, 1);
 
-                if (wordsInCategory.size() == 0) {
-                    openAlertDialog(getString(R.string.congratulations), getString(R.string.correctWord1p), Category.class);
+                if (words.size() == 0) {
+                    openAlertDialog(getString(R.string.congratulations), getString(R.string.correctWord1p), Home.class);
                 } else {
-                    correctWordsTextView.setText(getString(R.string.correct_words_text) + Integer.toString(correctWords));
-                    final Toast toast = Toast.makeText(this, getRandomToastText(), Toast.LENGTH_SHORT);
-                    toast.show();
-
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            toast.cancel();
-                        }
-                    }, 600);
-
                     setNewWord();
                 }
             }
@@ -160,14 +124,9 @@ public class Game extends AppCompatActivity {
             incrementHangman();
             if (hangmanState == 8) {
                 StatisticsHandler.setLosses(this, 1);
-                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + originalWord + "'. \n" + getString(R.string.tryAgain), Category.class);
+                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + originalWord + "'. \n" + getString(R.string.tryAgain), Home.class);
             }
         }
-    }
-
-    private String getRandomToastText() {
-        int index = randomGenerator.nextInt(toasts.length);
-        return toasts[index];
     }
 
     private void openAlertDialog(String title, String message, final Class destinationClass) {
@@ -194,7 +153,7 @@ public class Game extends AppCompatActivity {
     }
 
     private void setInvisibleWord() {
-        layout = (LinearLayout) findViewById(R.id.word_layout);
+        invisibleWordLayout = (LinearLayout) findViewById(R.id.word_layout);
 
         TextView textView;
         for (int i = 0; i < word.length(); i++) {
@@ -207,15 +166,8 @@ public class Game extends AppCompatActivity {
                 textView.setText("_ ");
             }
 
-            layout.addView(textView);
+            invisibleWordLayout.addView(textView);
         }
-    }
-
-    private boolean letterAlreadyGuessed(char letter) {
-        for (Character guessedLetter : guessedLetters) {
-            if (letter == guessedLetter) return true;
-        }
-        return false;
     }
 
     private boolean letterExists(char letter) {
@@ -230,7 +182,7 @@ public class Game extends AppCompatActivity {
     private void setLetters(char letter) {
         for (int i = 0; i < word.length(); i++) {
             if (word.charAt(i) != '\u0000' && word.charAt(i) == letter) {
-                TextView textView = (TextView) layout.getChildAt(i);
+                TextView textView = (TextView) invisibleWordLayout.getChildAt(i);
                 textView.setText(Character.toString(letter));
                 correctLetters++;
                 guessedLetters.add(letter);
@@ -241,14 +193,14 @@ public class Game extends AppCompatActivity {
 
     private void incrementHangman() {
         hangmanState++;
-        imageView.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
+        hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
     }
 
     private void updateWordFromArrayList() {
-        int index = randomGenerator.nextInt(wordsInCategory.size());
-        this.word = new StringBuilder(wordsInCategory.get(index).toUpperCase());
+        int index = randomGenerator.nextInt(words.size());
+        this.word = new StringBuilder(words.get(index).toUpperCase());
         originalWord = word.toString();
-        wordsInCategory.remove(index);
+        words.remove(index);
     }
 
     @Override
