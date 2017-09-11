@@ -22,11 +22,6 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goTo2Player(View view) {
-        Intent intent = new Intent(this, WordInput2P.class);
-        startActivity(intent);
-    }
-
     public void goToStatistics(View view) {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);

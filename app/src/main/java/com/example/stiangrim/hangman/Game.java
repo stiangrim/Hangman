@@ -138,9 +138,7 @@ public class Game extends AppCompatActivity {
                 correctWords++;
                 StatisticsHandler.setWins(this, 1);
 
-                if (twoPlayer) {
-                    openAlertDialog(getString(R.string.congratulations), getString(R.string.correctWord2p), WordInput2P.class);
-                } else if (wordsInCategory.size() == 0) {
+                if (wordsInCategory.size() == 0) {
                     openAlertDialog(getString(R.string.congratulations), getString(R.string.correctWord1p), Category.class);
                 } else {
                     correctWordsTextView.setText(getString(R.string.correct_words_text) + Integer.toString(correctWords));
@@ -158,8 +156,6 @@ public class Game extends AppCompatActivity {
                     setNewWord();
                 }
             }
-        } else if (letterAlreadyGuessed(letter)) {
-            Toast.makeText(getBaseContext(), getString(R.string.alreadyGuessed) + " " + letter, Toast.LENGTH_SHORT).show();
         } else {
             incrementHangman();
             if (hangmanState == 8) {
