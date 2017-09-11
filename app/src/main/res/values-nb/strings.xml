@@ -25,4 +25,5 @@
     <string name="exitToMenu">Tilbake til hovedmeny</string>
     <string name="words_guessed">Words guessed:</string>
     <string name="words_not_guessed">Words not guessed:</string>
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ</string>
 </resources>

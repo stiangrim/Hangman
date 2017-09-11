@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ public class Game extends AppCompatActivity {
     LinearLayout invisibleWordLayout;
     LinearLayout possibleLettersFirstRow;
     LinearLayout possibleLettersSecondRow;
+    LinearLayout possibleLettersThirdRow;
+    LinearLayout possibleLettersFourthRow;
     ImageView hangmanImage;
 
     StringBuilder word;
@@ -42,6 +45,8 @@ public class Game extends AppCompatActivity {
         hangmanImage = (ImageView) findViewById(R.id.hangman_image);
         possibleLettersFirstRow = (LinearLayout) findViewById(R.id.lettersFirstRow);
         possibleLettersSecondRow = (LinearLayout) findViewById(R.id.lettersSecondRow);
+        possibleLettersThirdRow = (LinearLayout) findViewById(R.id.lettersThirdRow);
+        possibleLettersFourthRow = (LinearLayout) findViewById(R.id.lettersFourthRow);
 
         words = getWords();
         randomGenerator = new Random();
@@ -61,37 +66,59 @@ public class Game extends AppCompatActivity {
     }
 
     private void placePossibleLetters() {
-        for (char alphabet = 'A'; alphabet <= 'M'; alphabet++) {
-            final TextView textView = new TextView(this);
-            textView.setTextSize(20);
-            textView.setPadding(8, 0, 8, 0);
-            textView.setText(Character.toString(alphabet));
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (textView.getText() != " ") checkLetter(textView);
-                }
-            });
-            possibleLettersFirstRow.addView(textView);
+        String alphabet = getResources().getString(R.string.alphabet);
+        int rowHelper = (int) Math.ceil(alphabet.length() / 4.0);
+        int leftover = rowHelper*4 - alphabet.length();
+
+        for (int i = 0; i < rowHelper; i++) {
+            Button button = getButton(Character.toString(alphabet.charAt(i)));
+            possibleLettersFirstRow.addView(button);
+            addLayoutParams(button);
         }
-        for (char alphabet = 'N'; alphabet <= 'Z'; alphabet++) {
-            final TextView textView = new TextView(this);
-            textView.setTextSize(20);
-            textView.setPadding(8, 0, 8, 0);
-            textView.setText(Character.toString(alphabet));
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (textView.getText() != " ") checkLetter(textView);
-                }
-            });
-            possibleLettersSecondRow.addView(textView);
+        for (int i = rowHelper; i < rowHelper * 2; i++) {
+            Button button = getButton(Character.toString(alphabet.charAt(i)));
+            possibleLettersSecondRow.addView(button);
+            addLayoutParams(button);
         }
+        for (int i = rowHelper * 2; i < rowHelper * 3; i++) {
+            Button button = getButton(Character.toString(alphabet.charAt(i)));
+            possibleLettersThirdRow.addView(button);
+            addLayoutParams(button);
+        }
+        for (int i = rowHelper * 3; i < rowHelper * 4 - leftover; i++) {
+            Button button = getButton(Character.toString(alphabet.charAt(i)));
+            possibleLettersFourthRow.addView(button);
+            addLayoutParams(button);
+        }
+    }
+
+    private Button getButton(String text) {
+        final Button button = new Button(this);
+        button.setTextSize(20);
+        button.setPadding(0, 0, 0, 0);
+        button.setText(text);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (button.getText() != " ") checkLetter(button);
+            }
+        });
+
+        return button;
+    }
+
+    private void addLayoutParams(Button button) {
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) button.getLayoutParams();
+        params.width = 130;
+        params.height = 130;
+        button.setLayoutParams(params);
     }
 
     private void setNewWord() {
         possibleLettersFirstRow.removeAllViews();
         possibleLettersSecondRow.removeAllViews();
+        possibleLettersThirdRow.removeAllViews();
+        possibleLettersFourthRow.removeAllViews();
         invisibleWordLayout.removeAllViews();
         hangmanState = 0;
         correctLetters = 0;
@@ -158,7 +185,7 @@ public class Game extends AppCompatActivity {
         TextView textView;
         for (int i = 0; i < word.length(); i++) {
             textView = new TextView(this);
-            textView.setTextSize(20);
+            textView.setTextSize(30);
 
             if (word.charAt(i) == ' ') {
                 textView.setText(" ");

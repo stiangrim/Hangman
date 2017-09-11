@@ -25,4 +25,5 @@
     <string name="exitToMenu">Exit to Main Menu</string>
     <string name="words_guessed">Words guessed:</string>
     <string name="words_not_guessed">Words not guessed:</string>
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 </resources>
