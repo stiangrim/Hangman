@@ -27,11 +27,6 @@ import java.util.Random;
 
 public class Game extends AppCompatActivity {
 
-
-    /*LinearLayout possibleLettersFirstRow;
-    LinearLayout possibleLettersSecondRow;
-    LinearLayout possibleLettersThirdRow;
-    LinearLayout possibleLettersFourthRow;*/
     LinearLayout invisibleWordLayout;
     TableLayout tableLayout;
     ImageView hangmanImage;
