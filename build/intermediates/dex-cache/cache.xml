@@ -3,21 +3,93 @@
 
     <item
         is-multidex="true"
-        jar="/Users/stiangrim/AndroidStudioProjects/Hangman/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/stiangrim/AndroidStudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_3be7857c14f28bd37751e48df9c7b078f06ac0fa/classes.dex" />
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_3f387359232fd9edfb83165f233e8f907cd7dce9/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/stiangrim/AndroidStudioProjects/Hangman/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/stiantornholmgrimsgaard/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e925f2569e91d038ae38716d8096c140b7200650">
-        <dex dex="/Users/stiangrim/AndroidStudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_ca64f47922dbf769dcaa2c00c072508c9abe3cfe/classes.dex" />
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_d14da7f8b9776fb0ce8da7e92d4298bae0599451/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/.android/build-cache/58d36a0543af033146a89362f743caac83d208c7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a9d0526b90707dec0e96f29c3d9e876ffbdc7f4e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/.android/build-cache/49424e6e512ef49ccecd3256cda4f8d68905cbf2/output/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_6789e9f0d42af60181ee450aeae11d1e5e7656ee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c4cff23323dcc482fef48e0a14a48dda85b2c2a0">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_57a166e4953b9ea72f4024995d966009872ed775/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/.android/build-cache/b3f9b952d04830e72542437fc4adc73cc9e2e917/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d1171e3a00fbc32901a075db69de3e0c89f9dc46/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_ffa33c3cb0a92a6d21266ec0cc99af6042d98904/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/.android/build-cache/ee40a526451fd31be75a2dc89e278aa081fcac15/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2e5b7b8e707b9999d155cc71d709826cf9f4798f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/.android/build-cache/a898959149ee230832d8788c82161ad10ac69b58/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9792511b04c9b050e8b2386f5e1403b0a58ed6bc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/stiantornholmgrimsgaard/.android/build-cache/49424e6e512ef49ccecd3256cda4f8d68905cbf2/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ccb287c86564ecf222ca6963515bc88b4ad3562a/classes.dex" />
     </item>
 
 </items>

@@ -28,8 +28,9 @@ public class Game extends AppCompatActivity {
     TableLayout tableLayout;
     ImageView hangmanImage;
 
-    GameDTO gameDTO;
     WordHandler wordHandler;
+
+    StringBuilder guessedLetters;
 
     Drawable red = new PaintDrawable(Color.RED);
     Drawable green = new PaintDrawable(Color.GREEN);
@@ -42,29 +43,40 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        invisibleWordLayout = (LinearLayout) findViewById(R.id.word_layout);
+        tableLayout = (TableLayout) findViewById(R.id.lettersLayout);
+        hangmanImage = (ImageView) findViewById(R.id.hangman_image);
+
         if (savedInstanceState != null) {
-            gameDTO = (GameDTO) savedInstanceState.getSerializable("game");
-            this.invisibleWordLayout = gameDTO.getInvisibleWordLayout();
-            this.tableLayout = gameDTO.getTableLayout();
-            this.hangmanImage = gameDTO.getHangmanImage();
-            this.wordHandler = gameDTO.getWordHandler();
-            this.hangmanState = gameDTO.getHangmanState();
-            this.correctLetters = gameDTO.getCorrectLetters();
-
-            this.hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
+            restoreSavedInstanceVariables((GameDTO) savedInstanceState.getSerializable("game"));
         } else {
-            invisibleWordLayout = (LinearLayout) findViewById(R.id.word_layout);
-            tableLayout = (TableLayout) findViewById(R.id.lettersLayout);
-            hangmanImage = (ImageView) findViewById(R.id.hangman_image);
-
             hangmanState = 0;
             correctLetters = 0;
 
             wordHandler = new WordHandler(getResources().getStringArray(R.array.words));
-
-            setInvisibleWord();
+            instantiateGuessedLetters();
+            setInvisibleWord(wordHandler.getWord(), false);
             placePossibleLetters();
         }
+    }
+
+    private void instantiateGuessedLetters() {
+        guessedLetters = new StringBuilder();
+        for (int i = 0; i < wordHandler.getWord().length(); i++) {
+            if(wordHandler.getWord().charAt(i) == ' ') guessedLetters.append(' ');
+            else guessedLetters.append('\u0000');
+        }
+    }
+
+    private void restoreSavedInstanceVariables(GameDTO gameDTO) {
+        this.wordHandler = gameDTO.getWordHandler();
+        this.hangmanState = gameDTO.getHangmanState();
+        this.correctLetters = gameDTO.getCorrectLetters();
+        this.guessedLetters = gameDTO.getGuessedLetters();
+
+        this.hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
+        setInvisibleWord(guessedLetters, true);
+        placePossibleLetters();
     }
 
     private void placePossibleLetters() {
@@ -116,7 +128,8 @@ public class Game extends AppCompatActivity {
         correctLetters = 0;
         hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
         wordHandler.setNewWord();
-        setInvisibleWord();
+        instantiateGuessedLetters();
+        setInvisibleWord(wordHandler.getWord(), false);
         placePossibleLetters();
     }
 
@@ -140,7 +153,7 @@ public class Game extends AppCompatActivity {
             incrementHangman();
             if (hangmanState == 8) {
                 StatisticsHandler.setLosses(this, 1);
-                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + wordHandler.getOriginalWord() + "'. \n" + getString(R.string.tryAgain), Home.class);
+                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + wordHandler.getOriginalWord() + "'. \n" + getString(R.string.tryAgain), Game.class);
             }
         }
 
@@ -171,24 +184,31 @@ public class Game extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void setInvisibleWord() {
-        StringBuilder word = wordHandler.getWord();
-
+    private void setInvisibleWord(StringBuilder word, boolean savedInstance) {
         TextView textView;
         for (int i = 0; i < word.length(); i++) {
             textView = new TextView(this);
             textView.setTextSize(30);
 
-            if (word.charAt(i) == ' ') {
-                textView.setText(" ");
-            } else {
-                textView.setText(" _ ");
+            if(savedInstance) {
+                if (word.charAt(i) == '\u0000') {
+                    textView.setText(" _ ");
+                } else if (word.charAt(i) == ' ') {
+                    textView.setText(" ");
+                } else {
+                    textView.setText(Character.toString(word.charAt(i)));
+                }
+            }
+            else {
+                if (word.charAt(i) == ' ') {
+                    textView.setText(" ");
+                } else {
+                    textView.setText(" _ ");
+                }
             }
 
             invisibleWordLayout.addView(textView);
         }
-
-        wordHandler.setWord(word);
     }
 
     private void setCorrectLetters(char letter) {
@@ -200,6 +220,7 @@ public class Game extends AppCompatActivity {
                 textView.setText(Character.toString(letter));
                 correctLetters++;
                 word.setCharAt(i, '\u0000');
+                guessedLetters.setCharAt(i, letter);
             }
         }
 
@@ -219,7 +240,7 @@ public class Game extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        gameDTO = new GameDTO(invisibleWordLayout, tableLayout, hangmanImage, wordHandler, hangmanState, correctLetters);
+        GameDTO gameDTO = new GameDTO(wordHandler, hangmanState, correctLetters, guessedLetters);
         outState.putSerializable("game", gameDTO);
     }
 }

@@ -14,32 +14,16 @@ import java.io.Serializable;
 
 public class GameDTO implements Serializable {
 
-    private LinearLayout invisibleWordLayout;
-    private TableLayout tableLayout;
-    private ImageView hangmanImage;
     private WordHandler wordHandler;
     private int hangmanState;
     private int correctLetters;
+    private StringBuilder guessedLetters;
 
-    public GameDTO(LinearLayout invisibleWordLayout, TableLayout tableLayout, ImageView hangmanImage, WordHandler wordHandler, int hangmanState, int correctLetters) {
-        this.invisibleWordLayout = invisibleWordLayout;
-        this.tableLayout = tableLayout;
-        this.hangmanImage = hangmanImage;
+    public GameDTO(WordHandler wordHandler, int hangmanState, int correctLetters, StringBuilder guessedLetters) {
         this.wordHandler = wordHandler;
         this.hangmanState = hangmanState;
         this.correctLetters = correctLetters;
-    }
-
-    public LinearLayout getInvisibleWordLayout() {
-        return invisibleWordLayout;
-    }
-
-    public TableLayout getTableLayout() {
-        return tableLayout;
-    }
-
-    public ImageView getHangmanImage() {
-        return hangmanImage;
+        this.guessedLetters = guessedLetters;
     }
 
     public WordHandler getWordHandler() {
@@ -52,5 +36,9 @@ public class GameDTO implements Serializable {
 
     public int getCorrectLetters() {
         return correctLetters;
+    }
+
+    public StringBuilder getGuessedLetters() {
+        return guessedLetters;
     }
 }
