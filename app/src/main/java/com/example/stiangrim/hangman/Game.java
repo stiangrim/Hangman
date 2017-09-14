@@ -30,7 +30,8 @@ public class Game extends AppCompatActivity {
 
     WordHandler wordHandler;
 
-    StringBuilder guessedLetters;
+    StringBuilder correctGuessedLetters;
+    StringBuilder wrongGuessedLetters;
 
     Drawable red = new PaintDrawable(Color.RED);
     Drawable green = new PaintDrawable(Color.GREEN);
@@ -54,17 +55,18 @@ public class Game extends AppCompatActivity {
             correctLetters = 0;
 
             wordHandler = new WordHandler(getResources().getStringArray(R.array.words));
+            wrongGuessedLetters = new StringBuilder();
             instantiateGuessedLetters();
-            setInvisibleWord(wordHandler.getWord(), false);
+            setInvisibleWord(wordHandler.getWord());
             placePossibleLetters();
         }
     }
 
     private void instantiateGuessedLetters() {
-        guessedLetters = new StringBuilder();
+        correctGuessedLetters = new StringBuilder();
         for (int i = 0; i < wordHandler.getWord().length(); i++) {
-            if(wordHandler.getWord().charAt(i) == ' ') guessedLetters.append(' ');
-            else guessedLetters.append('\u0000');
+            if (wordHandler.getWord().charAt(i) == ' ') correctGuessedLetters.append(' ');
+            else correctGuessedLetters.append('\u0000');
         }
     }
 
@@ -72,10 +74,11 @@ public class Game extends AppCompatActivity {
         this.wordHandler = gameDTO.getWordHandler();
         this.hangmanState = gameDTO.getHangmanState();
         this.correctLetters = gameDTO.getCorrectLetters();
-        this.guessedLetters = gameDTO.getGuessedLetters();
+        this.correctGuessedLetters = gameDTO.getCorrectGuessedLetters();
+        this.wrongGuessedLetters = gameDTO.getWrongGuessedLetters();
 
         this.hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
-        setInvisibleWord(guessedLetters, true);
+        setInvisibleWordFromSavedInstanceState(correctGuessedLetters);
         placePossibleLetters();
     }
 
@@ -118,7 +121,27 @@ public class Game extends AppCompatActivity {
             }
         });
 
+        updateButtonIfUsed(button);
+
         return button;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private void updateButtonIfUsed(Button button) {
+        for (int i = 0; i < wrongGuessedLetters.length(); i++) {
+            if(wrongGuessedLetters.charAt(i) == button.getText().charAt(0)) {
+                button.setBackground(red);
+                button.getBackground().setAlpha(50);
+                button.setClickable(false);
+            }
+        }
+        for (int i = 0; i < correctGuessedLetters.length(); i++) {
+            if (correctGuessedLetters.charAt(i) == button.getText().charAt(0)) {
+                button.setBackground(green);
+                button.getBackground().setAlpha(50);
+                button.setClickable(false);
+            }
+        }
     }
 
     private void setNewWord() {
@@ -126,10 +149,11 @@ public class Game extends AppCompatActivity {
         invisibleWordLayout.removeAllViews();
         hangmanState = 0;
         correctLetters = 0;
+        wrongGuessedLetters = new StringBuilder();
         hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
         wordHandler.setNewWord();
         instantiateGuessedLetters();
-        setInvisibleWord(wordHandler.getWord(), false);
+        setInvisibleWord(wordHandler.getWord());
         placePossibleLetters();
     }
 
@@ -143,17 +167,18 @@ public class Game extends AppCompatActivity {
             if (wordHandler.getTrimmedWord().length() == correctLetters) {
                 StatisticsHandler.setWins(this, 1);
                 if (wordHandler.allWordsUsed()) {
-                    openAlertDialog(getString(R.string.congratulations), getString(R.string.correctWord1p), Game.class);
+                    openAlertDialog(getString(R.string.congratulations), getString(R.string.correctWord1p));
                 } else {
                     setNewWord();
                 }
             }
         } else {
+            wrongGuessedLetters.append(letter);
             button.setBackground(red);
             incrementHangman();
             if (hangmanState == 8) {
                 StatisticsHandler.setLosses(this, 1);
-                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + wordHandler.getOriginalWord() + "'. \n" + getString(R.string.tryAgain), Game.class);
+                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + wordHandler.getOriginalWord() + "'. \n" + getString(R.string.tryAgain));
             }
         }
 
@@ -161,14 +186,14 @@ public class Game extends AppCompatActivity {
         button.setClickable(false);
     }
 
-    private void openAlertDialog(String title, String message, final Class destinationClass) {
+    private void openAlertDialog(String title, String message) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Game.this, destinationClass);
+                        Intent intent = new Intent(Game.this, Game.class);
                         startActivity(intent);
                     }
                 })
@@ -184,29 +209,34 @@ public class Game extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void setInvisibleWord(StringBuilder word, boolean savedInstance) {
+    private void setInvisibleWord(StringBuilder word) {
         TextView textView;
         for (int i = 0; i < word.length(); i++) {
             textView = new TextView(this);
             textView.setTextSize(30);
 
-            if(savedInstance) {
-                if (word.charAt(i) == '\u0000') {
-                    textView.setText(" _ ");
-                } else if (word.charAt(i) == ' ') {
-                    textView.setText(" ");
-                } else {
-                    textView.setText(Character.toString(word.charAt(i)));
-                }
+            if (word.charAt(i) == ' ') {
+                textView.setText(" ");
+            } else {
+                textView.setText(" _ ");
             }
-            else {
-                if (word.charAt(i) == ' ') {
-                    textView.setText(" ");
-                } else {
-                    textView.setText(" _ ");
-                }
-            }
+            invisibleWordLayout.addView(textView);
+        }
+    }
 
+    private void setInvisibleWordFromSavedInstanceState(StringBuilder word) {
+        TextView textView;
+        for (int i = 0; i < word.length(); i++) {
+            textView = new TextView(this);
+            textView.setTextSize(30);
+
+            if (word.charAt(i) == '\u0000') {
+                textView.setText(" _ ");
+            } else if (word.charAt(i) == ' ') {
+                textView.setText(" ");
+            } else {
+                textView.setText(Character.toString(word.charAt(i)));
+            }
             invisibleWordLayout.addView(textView);
         }
     }
@@ -220,7 +250,7 @@ public class Game extends AppCompatActivity {
                 textView.setText(Character.toString(letter));
                 correctLetters++;
                 word.setCharAt(i, '\u0000');
-                guessedLetters.setCharAt(i, letter);
+                correctGuessedLetters.setCharAt(i, letter);
             }
         }
 
@@ -240,7 +270,7 @@ public class Game extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        GameDTO gameDTO = new GameDTO(wordHandler, hangmanState, correctLetters, guessedLetters);
+        GameDTO gameDTO = new GameDTO(wordHandler, hangmanState, correctLetters, correctGuessedLetters, wrongGuessedLetters);
         outState.putSerializable("game", gameDTO);
     }
 }

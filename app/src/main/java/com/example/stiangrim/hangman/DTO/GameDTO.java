@@ -1,9 +1,5 @@
 package com.example.stiangrim.hangman.DTO;
 
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-
 import com.example.stiangrim.hangman.Model.WordHandler;
 
 import java.io.Serializable;
@@ -17,13 +13,15 @@ public class GameDTO implements Serializable {
     private WordHandler wordHandler;
     private int hangmanState;
     private int correctLetters;
-    private StringBuilder guessedLetters;
+    private StringBuilder correctGuessedLetters;
+    private StringBuilder wrongGuessedLetters;
 
-    public GameDTO(WordHandler wordHandler, int hangmanState, int correctLetters, StringBuilder guessedLetters) {
+    public GameDTO(WordHandler wordHandler, int hangmanState, int correctLetters, StringBuilder correctGuessedLetters, StringBuilder wrongGuessedLetters) {
         this.wordHandler = wordHandler;
         this.hangmanState = hangmanState;
         this.correctLetters = correctLetters;
-        this.guessedLetters = guessedLetters;
+        this.correctGuessedLetters = correctGuessedLetters;
+        this.wrongGuessedLetters = wrongGuessedLetters;
     }
 
     public WordHandler getWordHandler() {
@@ -38,7 +36,11 @@ public class GameDTO implements Serializable {
         return correctLetters;
     }
 
-    public StringBuilder getGuessedLetters() {
-        return guessedLetters;
+    public StringBuilder getCorrectGuessedLetters() {
+        return correctGuessedLetters;
+    }
+
+    public StringBuilder getWrongGuessedLetters() {
+        return wrongGuessedLetters;
     }
 }
