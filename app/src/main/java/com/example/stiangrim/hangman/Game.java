@@ -22,8 +22,6 @@ import com.example.stiangrim.hangman.DTO.GameDTO;
 import com.example.stiangrim.hangman.Model.StatisticsHandler;
 import com.example.stiangrim.hangman.Model.WordHandler;
 
-import java.io.Serializable;
-
 public class Game extends AppCompatActivity {
 
     LinearLayout invisibleWordLayout;
@@ -41,6 +39,8 @@ public class Game extends AppCompatActivity {
     int hangmanState;
     int correctLetters;
 
+    boolean gameRestored = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,26 +53,13 @@ public class Game extends AppCompatActivity {
         if (savedInstanceState != null) {
             restoreSavedInstanceVariables((GameDTO) savedInstanceState.getSerializable("game"));
         } else {
-            hangmanState = 0;
-            correctLetters = 0;
-
-            wordHandler = new WordHandler(getResources().getStringArray(R.array.words));
-            wrongGuessedLetters = new StringBuilder();
-            instantiateGuessedLetters();
-            setInvisibleWord(wordHandler.getWord());
-            placePossibleLetters();
-        }
-    }
-
-    private void instantiateGuessedLetters() {
-        correctGuessedLetters = new StringBuilder();
-        for (int i = 0; i < wordHandler.getWord().length(); i++) {
-            if (wordHandler.getWord().charAt(i) == ' ') correctGuessedLetters.append(' ');
-            else correctGuessedLetters.append('\u0000');
+            instantiateVariables();
         }
     }
 
     private void restoreSavedInstanceVariables(GameDTO gameDTO) {
+        gameRestored = true;
+
         this.wordHandler = gameDTO.getWordHandler();
         this.hangmanState = gameDTO.getHangmanState();
         this.correctLetters = gameDTO.getCorrectLetters();
@@ -82,6 +69,25 @@ public class Game extends AppCompatActivity {
         this.hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
         setInvisibleWordFromSavedInstanceState(correctGuessedLetters);
         placePossibleLetters();
+    }
+
+    private void instantiateVariables() {
+        hangmanState = 0;
+        correctLetters = 0;
+
+        wordHandler = new WordHandler(getResources().getStringArray(R.array.words));
+        wrongGuessedLetters = new StringBuilder();
+        instantiateGuessedLetters();
+        setInvisibleWord(wordHandler.getWord());
+        placePossibleLetters();
+    }
+
+    private void instantiateGuessedLetters() {
+        correctGuessedLetters = new StringBuilder();
+        for (int i = 0; i < wordHandler.getWord().length(); i++) {
+            if (wordHandler.getWord().charAt(i) == ' ') correctGuessedLetters.append(' ');
+            else correctGuessedLetters.append('\u0000');
+        }
     }
 
     private void placePossibleLetters() {
@@ -113,7 +119,6 @@ public class Game extends AppCompatActivity {
     private Button getButton(String text) {
         final Button button = new Button(this);
         button.setTextSize(20);
-        button.setPadding(0, 0, 0, 0);
         button.setText(text);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,25 +128,27 @@ public class Game extends AppCompatActivity {
             }
         });
 
-        updateButtonIfUsed(button);
+        if(gameRestored) updateButtonIfUsed(button);
 
         return button;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private void setButtonToUsed(Button button, Drawable color) {
+        button.setBackground(color);
+        button.getBackground().setAlpha(50);
+        button.setClickable(false);
+    }
+
     private void updateButtonIfUsed(Button button) {
         for (int i = 0; i < wrongGuessedLetters.length(); i++) {
             if(wrongGuessedLetters.charAt(i) == button.getText().charAt(0)) {
-                button.setBackground(red);
-                button.getBackground().setAlpha(50);
-                button.setClickable(false);
+                setButtonToUsed(button, red);
             }
         }
         for (int i = 0; i < correctGuessedLetters.length(); i++) {
             if (correctGuessedLetters.charAt(i) == button.getText().charAt(0)) {
-                button.setBackground(green);
-                button.getBackground().setAlpha(50);
-                button.setClickable(false);
+                setButtonToUsed(button, green);
             }
         }
     }
@@ -159,12 +166,11 @@ public class Game extends AppCompatActivity {
         placePossibleLetters();
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void checkLetter(Button button) {
         char letter = button.getText().charAt(0);
 
         if (wordHandler.letterExists(letter)) {
-            button.setBackground(green);
+            setButtonToUsed(button, green);
             setCorrectLetters(letter);
             if (wordHandler.getTrimmedWord().length() == correctLetters) {
                 StatisticsHandler.setWins(this, 1);
@@ -176,16 +182,13 @@ public class Game extends AppCompatActivity {
             }
         } else {
             wrongGuessedLetters.append(letter);
-            button.setBackground(red);
+            setButtonToUsed(button, red);
             incrementHangman();
             if (hangmanState == 8) {
                 StatisticsHandler.setLosses(this, 1);
                 openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + wordHandler.getOriginalWord() + "'. \n" + getString(R.string.tryAgain));
             }
         }
-
-        button.getBackground().setAlpha(50);
-        button.setClickable(false);
     }
 
     private void openAlertDialog(String title, String message) {
@@ -212,9 +215,8 @@ public class Game extends AppCompatActivity {
     }
 
     private void setInvisibleWord(StringBuilder word) {
-        TextView textView;
         for (int i = 0; i < word.length(); i++) {
-            textView = new TextView(this);
+            TextView textView = new TextView(this);
             textView.setTextSize(30);
 
             if (word.charAt(i) == ' ') {
@@ -227,9 +229,8 @@ public class Game extends AppCompatActivity {
     }
 
     private void setInvisibleWordFromSavedInstanceState(StringBuilder word) {
-        TextView textView;
         for (int i = 0; i < word.length(); i++) {
-            textView = new TextView(this);
+            TextView textView = new TextView(this);
             textView.setTextSize(30);
 
             if (word.charAt(i) == '\u0000') {
