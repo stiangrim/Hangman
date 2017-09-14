@@ -22,6 +22,8 @@ import com.example.stiangrim.hangman.DTO.GameDTO;
 import com.example.stiangrim.hangman.Model.StatisticsHandler;
 import com.example.stiangrim.hangman.Model.WordHandler;
 
+import java.io.Serializable;
+
 public class Game extends AppCompatActivity {
 
     LinearLayout invisibleWordLayout;

@@ -1,5 +1,6 @@
 package com.example.stiangrim.hangman.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -8,7 +9,7 @@ import java.util.Random;
  * Created by stiangrim on 12.09.2017.
  */
 
-public class WordHandler {
+public class WordHandler implements Serializable {
 
     private StringBuilder word;
     private String originalWord;
