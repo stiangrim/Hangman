@@ -8,46 +8,49 @@
 
     <TextView
         android:id="@+id/words_not_guessed_result"
-        android:layout_width="20dp"
-        android:layout_height="26dp"
-        app:layout_constraintLeft_toRightOf="@+id/words_not_guessed"
+        android:layout_width="67dp"
+        android:layout_height="86dp"
         android:layout_marginLeft="-8dp"
-        android:layout_marginTop="34dp"
-        app:layout_constraintTop_toBottomOf="@+id/words_guessed_result"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="34dp"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/words_not_guessed"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/words_guessed_result" />
 
     <TextView
         android:id="@+id/words_not_guessed"
-        android:layout_width="140dp"
-        android:layout_height="33dp"
+        android:layout_width="236dp"
+        android:layout_height="86dp"
         android:layout_marginLeft="89dp"
         android:layout_marginTop="34dp"
         android:text="@string/words_not_guessed"
+        android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/words_guessed" />
 
     <TextView
         android:id="@+id/words_guessed"
-        android:layout_width="139dp"
-        android:layout_height="24dp"
-        android:text="@string/words_guessed"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="60dp"
+        android:layout_width="236dp"
+        android:layout_height="86dp"
         android:layout_marginLeft="89dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/words_guessed"
+        android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteX="64dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/words_guessed_result"
-        android:layout_width="20dp"
-        android:layout_height="26dp"
-        app:layout_constraintLeft_toRightOf="@+id/words_guessed"
+        android:layout_width="67dp"
+        android:layout_height="86dp"
         android:layout_marginLeft="-8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="60dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="60dp"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/words_guessed"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
