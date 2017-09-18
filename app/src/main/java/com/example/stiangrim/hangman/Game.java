@@ -33,8 +33,8 @@ public class Game extends AppCompatActivity {
     StringBuilder correctGuessedLetters;
     StringBuilder wrongGuessedLetters;
 
-    Drawable red = new PaintDrawable(Color.RED);
-    Drawable green = new PaintDrawable(Color.GREEN);
+    Drawable red = new PaintDrawable(Color.argb(200, 153, 0, 0));
+    Drawable green = new PaintDrawable(Color.argb(200, 0, 153, 0));
 
     int hangmanState;
     int correctLetters;
@@ -99,15 +99,16 @@ public class Game extends AppCompatActivity {
         for (int col = 0; col < length; col++) {
             TableRow tableRow = new TableRow(this);
 
-            TableRow.LayoutParams tlp = new TableRow.LayoutParams(170, 135);
+            TableRow.LayoutParams tlp = new TableRow.LayoutParams(155, 120);
+            tlp.setMargins(0, 0, 12, 12);
             tableRow.setLayoutParams(tlp);
-
             tableLayout.addView(tableRow);
 
             for (int row = 0; row < length; row++) {
                 if (counter < alphabet.length()) {
                     Button button = getButton(Character.toString(alphabet.charAt(counter)));
                     button.setLayoutParams(tlp);
+                    button.setPadding(0, 0, 0, 4);
 
                     tableRow.addView(button);
                 }
@@ -116,9 +117,12 @@ public class Game extends AppCompatActivity {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private Button getButton(String text) {
         final Button button = new Button(this);
-        button.setTextSize(20);
+        button.setTextSize(25);
+        button.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
+        button.getBackground().setAlpha(225);
         button.setText(text);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +132,7 @@ public class Game extends AppCompatActivity {
             }
         });
 
-        if(gameRestored) updateButtonIfUsed(button);
+        if (gameRestored) updateButtonIfUsed(button);
 
         return button;
     }
@@ -136,13 +140,13 @@ public class Game extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void setButtonToUsed(Button button, Drawable color) {
         button.setBackground(color);
-        button.getBackground().setAlpha(50);
+        button.getBackground().setAlpha(200);
         button.setClickable(false);
     }
 
     private void updateButtonIfUsed(Button button) {
         for (int i = 0; i < wrongGuessedLetters.length(); i++) {
-            if(wrongGuessedLetters.charAt(i) == button.getText().charAt(0)) {
+            if (wrongGuessedLetters.charAt(i) == button.getText().charAt(0)) {
                 setButtonToUsed(button, red);
             }
         }
@@ -168,6 +172,7 @@ public class Game extends AppCompatActivity {
 
     public void checkLetter(Button button) {
         char letter = button.getText().charAt(0);
+        StatisticsHandler.setLetter(this, Character.toString(letter), 1);
 
         if (wordHandler.letterExists(letter)) {
             setButtonToUsed(button, green);
@@ -218,6 +223,7 @@ public class Game extends AppCompatActivity {
         for (int i = 0; i < word.length(); i++) {
             TextView textView = new TextView(this);
             textView.setTextSize(30);
+            textView.setTextColor(getResources().getColor(R.color.colorSecondary));
 
             if (word.charAt(i) == ' ') {
                 textView.setText(" ");
@@ -232,6 +238,7 @@ public class Game extends AppCompatActivity {
         for (int i = 0; i < word.length(); i++) {
             TextView textView = new TextView(this);
             textView.setTextSize(30);
+            textView.setTextColor(getResources().getColor(R.color.colorSecondary));
 
             if (word.charAt(i) == '\u0000') {
                 textView.setText(" _ ");
@@ -263,11 +270,6 @@ public class Game extends AppCompatActivity {
     private void incrementHangman() {
         hangmanState++;
         hangmanImage.setImageResource(getResources().getIdentifier("hangman_" + hangmanState, "drawable", getPackageName()));
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override

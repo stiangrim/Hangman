@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="com.example.stiangrim.hangman.Home">
 
     <ImageView
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:width="300dp"
+        android:background="@color/colorSecondary"
         android:onClick="goToGameActivity"
         android:text="@string/new_game"
         android:textSize="22sp"
@@ -51,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:width="300dp"
+        android:background="@color/colorSecondary"
         android:text="@string/statistics"
         android:textSize="20sp"
         app:layout_constraintHorizontal_bias="0.501"
@@ -64,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:width="300dp"
+        android:background="@color/colorSecondary"
         android:onClick="goToRulesActivity"
         android:text="@string/rules"
         android:textSize="20sp"

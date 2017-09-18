@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="com.example.stiangrim.hangman.Home">
 
     <ImageView
@@ -16,7 +17,8 @@
         android:onClick="setLanguageToNorwegian"
         app:layout_constraintRight_toLeftOf="@+id/flag_united_kingdom"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/flag_norway" />
+        app:srcCompat="@drawable/flag_norway"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/flag_united_kingdom"
@@ -28,7 +30,8 @@
         android:onClick="setLanguageToEnglish"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/flag_united_kingdom" />
+        app:srcCompat="@drawable/flag_united_kingdom"
+        android:layout_marginEnd="16dp" />
 
 
     <Button
@@ -38,6 +41,7 @@
         android:layout_marginTop="120dp"
         android:width="250dp"
         android:height="60dp"
+        android:background="@color/colorSecondary"
         android:onClick="goToGameActivity"
         android:text="@string/new_game"
         android:textSize="22sp"
@@ -53,6 +57,7 @@
         android:layout_marginTop="30dp"
         android:width="250dp"
         android:height="60dp"
+        android:background="@color/colorSecondary"
         android:onClick="goToRulesActivity"
         android:text="@string/rules"
         android:textSize="20sp"
@@ -68,6 +73,7 @@
         android:layout_marginTop="30dp"
         android:width="250dp"
         android:height="60dp"
+        android:background="@color/colorSecondary"
         android:onClick="goToStatisticsActivity"
         android:text="@string/statistics"
         android:textSize="20sp"

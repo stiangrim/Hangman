@@ -23,6 +23,15 @@ public class Home extends AppCompatActivity {
 
         norwegian = (ImageView) findViewById(R.id.flag_norway);
         english = (ImageView) findViewById(R.id.flag_united_kingdom);
+
+        if (getIntent().getExtras() != null && getIntent().getExtras().getBoolean("norwegian")) {
+            english.setAlpha(100);
+            norwegian.setClickable(false);
+        } else {
+            norwegian.setAlpha(100);
+            english.setClickable(false);
+        }
+
     }
 
     public void goToGameActivity(View view) {
@@ -41,14 +50,14 @@ public class Home extends AppCompatActivity {
     }
 
     public void setLanguageToNorwegian(View view) {
-        setLocale("nb");
+        setLocale("nb", true);
     }
 
     public void setLanguageToEnglish(View view) {
-        setLocale("");
+        setLocale("", false);
     }
 
-    private void setLocale(String lang) {
+    private void setLocale(String lang, boolean norwegianClicked) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -56,6 +65,7 @@ public class Home extends AppCompatActivity {
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
         Intent intent = new Intent(this, Home.class);
+        intent.putExtra("norwegian", norwegianClicked);
         startActivity(intent);
         finish();
     }

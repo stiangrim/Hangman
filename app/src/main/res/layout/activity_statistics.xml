@@ -3,54 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorBackground"
     android:layout_height="match_parent"
     tools:context="com.example.stiangrim.hangman.Statistics">
 
-    <TextView
-        android:id="@+id/words_not_guessed_result"
-        android:layout_width="73dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="-8dp"
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_width="334dp"
+        android:layout_height="361dp"
+        android:id="@+id/piegraph"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="35dp"
-        android:textSize="25sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/words_not_guessed"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/words_guessed_result" />
-
-    <TextView
-        android:id="@+id/words_not_guessed"
-        android:layout_width="222dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/words_not_guessed"
-        android:textSize="25sp"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/words_guessed" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="134dp"></com.github.mikephil.charting.charts.PieChart>
 
-    <TextView
-        android:id="@+id/words_guessed"
-        android:layout_width="222dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/words_guessed"
-        android:textSize="25sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/words_guessed_result"
-        android:layout_width="73dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="-8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="60dp"
-        android:textSize="25sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/words_guessed"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

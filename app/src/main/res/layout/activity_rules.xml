@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorBackground"
     android:layout_height="match_parent"
     tools:context="com.example.stiangrim.hangman.Rules">
 
@@ -10,6 +11,7 @@
         android:id="@+id/rules_text"
         android:lineSpacingExtra="5dp"
         android:textSize="15sp"
+        android:textColor="@color/colorSecondary"
         android:layout_width="298dp"
         android:layout_height="460dp"
         android:text="@string/rules_text"
