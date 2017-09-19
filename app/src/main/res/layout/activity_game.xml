@@ -9,38 +9,37 @@
 
     <ImageView
         android:id="@+id/hangman_image"
-        android:layout_width="409dp"
+        android:layout_width="390dp"
         android:layout_height="229dp"
         android:contentDescription="@string/hangman_image_content_description"
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hangman_0" />
-
-    <LinearLayout
-        android:id="@+id/word_layout"
-        android:layout_width="392dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="26dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hangman_image" />
+        app:srcCompat="@drawable/hangman_0"
+        android:layout_marginTop="0dp" />
 
     <TableLayout
         android:id="@+id/lettersLayout"
         android:layout_width="392dp"
-        android:layout_height="251dp"
+        android:layout_height="260dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="31dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/word_layout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.319" />
+
+    <LinearLayout
+        android:id="@+id/word_layout"
+        android:layout_width="392dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hangman_image" />
 
 </android.support.constraint.ConstraintLayout>

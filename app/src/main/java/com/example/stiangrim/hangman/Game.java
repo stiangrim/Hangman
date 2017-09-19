@@ -99,7 +99,7 @@ public class Game extends AppCompatActivity {
         for (int col = 0; col < length; col++) {
             TableRow tableRow = new TableRow(this);
 
-            TableRow.LayoutParams tlp = new TableRow.LayoutParams(155, 120);
+            TableRow.LayoutParams tlp = new TableRow.LayoutParams(162, 125);
             tlp.setMargins(0, 0, 12, 12);
             tableRow.setLayoutParams(tlp);
             tableLayout.addView(tableRow);
@@ -222,7 +222,7 @@ public class Game extends AppCompatActivity {
     private void setInvisibleWord(StringBuilder word) {
         for (int i = 0; i < word.length(); i++) {
             TextView textView = new TextView(this);
-            textView.setTextSize(30);
+            textView.setTextSize(50);
             textView.setTextColor(getResources().getColor(R.color.colorSecondary));
 
             if (word.charAt(i) == ' ') {
@@ -237,7 +237,7 @@ public class Game extends AppCompatActivity {
     private void setInvisibleWordFromSavedInstanceState(StringBuilder word) {
         for (int i = 0; i < word.length(); i++) {
             TextView textView = new TextView(this);
-            textView.setTextSize(30);
+            textView.setTextSize(50);
             textView.setTextColor(getResources().getColor(R.color.colorSecondary));
 
             if (word.charAt(i) == '\u0000') {

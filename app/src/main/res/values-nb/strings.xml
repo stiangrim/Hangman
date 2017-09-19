@@ -7,7 +7,7 @@
     <string name="flag_of_norway">Flagget til Norge</string>
     <string name="new_game">Nytt Spill</string>
     <string name="rules">Regler</string>
-    <string name="rules_text">"Når du går inn i et nytt spill, ser du understreker som representerer ordet du prøver å gjette.\n\nGjett en bokstav ved å klikke på en av bokstavene nederst på skjermen.\nHvis bokstaven eksisterer, vil det dukke opp på alle mulige steder i det "usynlige" ordet. Hvis bokstaven ikke eksisterer, vil hangmanen inkrementeres, og du blir et skritt nærmere å dø.\n\nHver gang du gjetter en bokstav, forsvinner bokstaven - det betyr at du ikke kan gjette den samme bokstaven flere ganger.\n\nHangman vil inkrementeres i følgende rekkefølge: hode, kropp, arm, arm, ben, ben og død."</string>
+    <string name="rules_text">"Når du går inn i et nytt spill, ser du understreker som representerer ordet du prøver å gjette.\n\nGjett en bokstav ved å klikke på en av bokstavene nederst på skjermen.\nHvis bokstaven eksisterer, vil det dukke opp på alle mulige steder i det "usynlige" ordet. Hvis bokstaven ikke eksisterer, vil hangmanen inkrementeres, og du blir et skritt nærmere å dø.\n\nHver gang du gjetter en bokstav, blir bokstaven grønn (riktig) eller rød (feil) - det betyr at du ikke kan gjette den samme bokstaven flere ganger.\n\nHangman vil inkrementeres i følgende rekkefølge: hode, kropp, arm, arm, ben, ben og død."</string>
     <string name="congratulations">Gratulerer!</string>
     <string name="correctWord1p">Du har gjettet alle ord i denne kategorien. Vil du velge en annen kategori?</string>
     <string name="gameOver">Game Over</string>

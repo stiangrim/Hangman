@@ -7,7 +7,7 @@
     <string name="flag_of_norway">Flag of Norway</string>
     <string name="new_game">New Game</string>
     <string name="rules">Rules</string>
-    <string name="rules_text">"When entering the Game screen, you will see underlines which represents the word you are trying to guess.\n\nTake a guess by clicking on a letter.\nIf the letter exists, it will show up on all possible places in the "invisible" word. If the letter does not exist, the hangman will be incremented and you will be one step closer to losing.\n\nEach time you guess a letter, the letter disappears - meaning you can't guess the same letter again.\n\nThe hangman will be incremented in the following order: head, body, arm, arm, leg, leg and dead."</string>
+    <string name="rules_text">"When entering the Game screen, you will see underlines which represents the word you are trying to guess.\n\nTake a guess by clicking on a letter.\nIf the letter exists, it will show up on all possible places in the "invisible" word. If the letter does not exist, the hangman will be incremented and you will be one step closer to losing.\n\nEach time you guess a letter, the letter becomes green (correct) or red (wrong) - meaning you can't guess the same letter again.\n\nThe hangman will be incremented in the following order: head, body, arm, arm, leg, leg and dead."</string>
     <string name="congratulations">Congratulations!</string>
     <string name="correctWord1p">You have guessed every word. Do you want to play again?</string>
     <string name="gameOver">Game Over</string>
