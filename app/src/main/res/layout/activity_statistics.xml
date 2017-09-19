@@ -3,19 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorBackground"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="com.example.stiangrim.hangman.Statistics">
 
     <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/piegraph"
         android:layout_width="334dp"
         android:layout_height="361dp"
-        android:id="@+id/piegraph"
+        android:layout_marginTop="22dp"
+        app:layout_constraintTop_toBottomOf="@+id/statistics_text"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="134dp"></com.github.mikephil.charting.charts.PieChart>
+        android:layout_marginBottom="8dp"></com.github.mikephil.charting.charts.PieChart>
+
+    <TextView
+        android:id="@+id/statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/statistics"
+        android:textColor="@color/colorSecondary"
+        android:textSize="40sp"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/statistics_text"
+        android:layout_width="348dp"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:layout_marginTop="7dp"
+        android:text="@string/statistics_text"
+        android:textColor="@color/colorSecondary"
+        app:layout_constraintTop_toBottomOf="@+id/statistics"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

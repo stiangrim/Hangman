@@ -7,7 +7,6 @@
     <string name="flag_of_norway">Flagget til Norge</string>
     <string name="new_game">Nytt Spill</string>
     <string name="rules">Regler</string>
-    <string name="rules_text">"Når du går inn i et nytt spill, ser du understreker som representerer ordet du prøver å gjette.\n\nGjett en bokstav ved å klikke på en av bokstavene nederst på skjermen.\nHvis bokstaven eksisterer, vil det dukke opp på alle mulige steder i det "usynlige" ordet. Hvis bokstaven ikke eksisterer, vil hangmanen inkrementeres, og du blir et skritt nærmere å dø.\n\nHver gang du gjetter en bokstav, blir bokstaven grønn (riktig) eller rød (feil) - det betyr at du ikke kan gjette den samme bokstaven flere ganger.\n\nHangman vil inkrementeres i følgende rekkefølge: hode, kropp, arm, arm, ben, ben og død."</string>
     <string name="congratulations">Gratulerer!</string>
     <string name="correctWord1p">Du har gjettet alle ord i denne kategorien. Vil du velge en annen kategori?</string>
     <string name="gameOver">Game Over</string>
@@ -18,4 +17,13 @@
     <string name="words_guessed">Riktige ord:</string>
     <string name="words_not_guessed">Antall tap:</string>
     <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ</string>
+    <string name="text_rules_0">REGLER</string>
+    <string name="text_rules_1">Når du starter et nytt spill, vil du se understreker som representerer ordet du skal gjette.</string>
+    <string name="text_rules_2">Gjett ved å trykke på en bokstav. Hvis bokstaven finnes, vil den vises på alle mulige plasser i det \'usynlige\' ordet.</string>
+    <string name="text_rules_3">Hver gang du gjetter en bokstav, blir den grønn hvis bokstaven finnes, og rød hvis ikke.</string>
+    <string name="text_rules_4">Hvis bokstaven er feil, vil hangman inkrementeres og du blir et skritt nærmere å dø.</string>
+    <string name="text_rules_5">Hangman inkrementeres i følgende ordre: hode, kropp, arm, arm, bein, bein og død.</string>
+    <string name="wins">Vinn</string>
+    <string name="losses">Tap</string>
+    <string name="statistics_text">Vinn representerer antall riktige ord gjettet.\nTap representerer antall ord gjettet feil.</string>
 </resources>

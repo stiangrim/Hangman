@@ -7,7 +7,6 @@
     <string name="flag_of_norway">Flag of Norway</string>
     <string name="new_game">New Game</string>
     <string name="rules">Rules</string>
-    <string name="rules_text">"When entering the Game screen, you will see underlines which represents the word you are trying to guess.\n\nTake a guess by clicking on a letter.\nIf the letter exists, it will show up on all possible places in the "invisible" word. If the letter does not exist, the hangman will be incremented and you will be one step closer to losing.\n\nEach time you guess a letter, the letter becomes green (correct) or red (wrong) - meaning you can't guess the same letter again.\n\nThe hangman will be incremented in the following order: head, body, arm, arm, leg, leg and dead."</string>
     <string name="congratulations">Congratulations!</string>
     <string name="correctWord1p">You have guessed every word. Do you want to play again?</string>
     <string name="gameOver">Game Over</string>
@@ -18,4 +17,13 @@
     <string name="words_guessed">Correct words:</string>
     <string name="words_not_guessed">Number of losses:</string>
     <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="text_rules_0">RULES</string>
+    <string name="text_rules_1">When entering the Game screen, you will see underlines which represents the word you are trying to guess.</string>
+    <string name="text_rules_2">Take a guess by clicking on a letter. If the letter exists, it will show up on all possible places in the \'invisible\' word.</string>
+    <string name="text_rules_3">Each time you guess a letter, it becomes green if the letter is correct and red if not.</string>
+    <string name="text_rules_4">If the letter is wrong, the hangman will increment and you will be one step closer to losing.</string>
+    <string name="text_rules_5">The hangman will be incremented in the following order: head, body, arm, arm, leg, leg and dead.</string>
+    <string name="wins">Wins</string>
+    <string name="losses">Losses</string>
+    <string name="statistics_text">Wins represents every correct word guessed.\nLosses represents every wrong word guessed.</string>
 </resources>

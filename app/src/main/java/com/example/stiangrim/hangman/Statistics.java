@@ -30,15 +30,15 @@ public class Statistics extends AppCompatActivity {
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
-        pieEntries.add(new PieEntry(StatisticsHandler.getWins(this), "Wins"));
-        pieEntries.add(new PieEntry(StatisticsHandler.getLosses(this), "Losses"));
+        pieEntries.add(new PieEntry(StatisticsHandler.getWins(this), getString(R.string.wins)));
+        pieEntries.add(new PieEntry(StatisticsHandler.getLosses(this), getString(R.string.losses)));
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
 
         int[] pieColors = {Color.rgb(0, 153, 0), Color.rgb(153, 0, 0)};
         pieDataSet.setColors(pieColors);
         PieData pieData = new PieData(pieDataSet);
-        pieData.setValueTextSize(50f);
+        pieData.setValueTextSize(30f);
         pieData.setValueTextColor(Color.WHITE);
 
         pieChart.setData(pieData);
