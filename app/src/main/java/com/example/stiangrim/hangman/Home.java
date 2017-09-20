@@ -9,12 +9,16 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.stiangrim.hangman.Model.LanguageHandler;
+import com.example.stiangrim.hangman.Model.ToastHandler;
+
 import java.util.Locale;
 
 public class Home extends AppCompatActivity {
 
     ImageView norwegian;
     ImageView english;
+    ToastHandler toastHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +27,27 @@ public class Home extends AppCompatActivity {
 
         norwegian = (ImageView) findViewById(R.id.flag_norway);
         english = (ImageView) findViewById(R.id.flag_united_kingdom);
+        toastHandler = new ToastHandler(this);
 
-        if (getIntent().getExtras() != null && getIntent().getExtras().getBoolean("norwegian")) {
-            english.setAlpha(100);
-            norwegian.setClickable(false);
+        if (getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getBoolean("norwegian")) {
+                english.setAlpha(100);
+                norwegian.setClickable(false);
+            } else {
+                norwegian.setAlpha(100);
+                english.setClickable(false);
+            }
         } else {
-            norwegian.setAlpha(100);
-            english.setClickable(false);
+            String lang = LanguageHandler.getDefaultLanguage(this);
+            if (lang.equals("nb")) {
+                setLocale("nb", true);
+                english.setAlpha(100);
+                norwegian.setClickable(false);
+            } else if (lang.equals("en")) {
+                norwegian.setAlpha(100);
+                english.setClickable(false);
+            }
         }
-
     }
 
     public void goToGameActivity(View view) {
@@ -51,10 +67,12 @@ public class Home extends AppCompatActivity {
 
     public void setLanguageToNorwegian(View view) {
         setLocale("nb", true);
+        LanguageHandler.setDefaultLanguage(this, "nb");
     }
 
     public void setLanguageToEnglish(View view) {
-        setLocale("", false);
+        setLocale("en", false);
+        LanguageHandler.setDefaultLanguage(this, "en");
     }
 
     private void setLocale(String lang, boolean norwegianClicked) {

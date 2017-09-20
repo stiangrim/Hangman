@@ -10,7 +10,7 @@
     <string name="congratulations">Gratulerer!</string>
     <string name="correctWord1p">Du har gjettet alle ord i denne kategorien. Vil du velge en annen kategori?</string>
     <string name="gameOver">Game Over</string>
-    <string name="youLost">Du tapte.. Det riktige ordet var</string>
+    <string name="youLost">Det riktige ordet var</string>
     <string name="tryAgain">Prøve igjen?</string>
     <string name="yes">Ja</string>
     <string name="words_guessed">Riktige ord:</string>
@@ -27,4 +27,9 @@
     <string name="statistics_text">Vinn representerer antall riktige ord gjettet.\nTap representerer antall ord gjettet feil.</string>
     <string name="no">Nei</string>
     <string name="Hangman">Hangman</string>
+    <string name="toast_encouragement_0">Bra jobba!</string>
+    <string name="toast_encouragement_1">Fantastisk!</string>
+    <string name="toast_encouragement_2">Herlig!</string>
+    <string name="toast_encouragement_3">Glimrende!</string>
+    <string name="toast_encouragement_4">Nydelig!</string>
 </resources>

@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.stiangrim.hangman.DTO.GameDTO;
 import com.example.stiangrim.hangman.Model.StatisticsHandler;
+import com.example.stiangrim.hangman.Model.ToastHandler;
 import com.example.stiangrim.hangman.Model.WordHandler;
 
 public class Game extends AppCompatActivity {
@@ -29,6 +30,7 @@ public class Game extends AppCompatActivity {
     ImageView hangmanImage;
 
     WordHandler wordHandler;
+    ToastHandler toastHandler;
 
     StringBuilder correctGuessedLetters;
     StringBuilder wrongGuessedLetters;
@@ -49,6 +51,7 @@ public class Game extends AppCompatActivity {
         invisibleWordLayout = (LinearLayout) findViewById(R.id.word_layout);
         tableLayout = (TableLayout) findViewById(R.id.lettersLayout);
         hangmanImage = (ImageView) findViewById(R.id.hangman_image);
+        toastHandler = new ToastHandler(this);
 
         if (savedInstanceState != null) {
             restoreSavedInstanceVariables((GameDTO) savedInstanceState.getSerializable("game"));
@@ -172,12 +175,12 @@ public class Game extends AppCompatActivity {
 
     public void checkLetter(Button button) {
         char letter = button.getText().charAt(0);
-        StatisticsHandler.setLetter(this, Character.toString(letter), 1);
 
         if (wordHandler.letterExists(letter)) {
             setButtonToUsed(button, green);
             setCorrectLetters(letter);
             if (wordHandler.getTrimmedWord().length() == correctLetters) {
+                toastHandler.showEncouragementToast(1000);
                 StatisticsHandler.setWins(this, 1);
                 if (wordHandler.allWordsUsed()) {
                     openAlertDialog(getString(R.string.congratulations), getString(R.string.correctWord1p));
@@ -191,7 +194,7 @@ public class Game extends AppCompatActivity {
             incrementHangman();
             if (hangmanState == 8) {
                 StatisticsHandler.setLosses(this, 1);
-                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " '" + wordHandler.getOriginalWord() + "'. \n" + getString(R.string.tryAgain));
+                openAlertDialog(getString(R.string.gameOver), getString(R.string.youLost) + " " + wordHandler.getOriginalWord() + ". \n" + getString(R.string.tryAgain));
             }
         }
     }

@@ -9,10 +9,8 @@ import android.content.SharedPreferences;
 
 public class StatisticsHandler {
 
-    private static String SHARED_PREFERENCES_NAME = "prefs";
-
     private static SharedPreferences getPrefs(Context context) {
-        return context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        return context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
     }
 
     public static void clearAllData(Context context) {
@@ -37,16 +35,6 @@ public class StatisticsHandler {
 
     public static int getLosses(Context context) {
         return getPrefs(context).getInt("losses", 0);
-    }
-
-    public static void setLetter(Context context, String letter, int input) {
-        SharedPreferences.Editor editor = getPrefs(context).edit();
-        editor.putInt(letter, getLosses(context) + input);
-        editor.apply();
-    }
-
-    public static int getLetter(Context context, String letter) {
-        return getPrefs(context).getInt(letter, 0);
     }
 
 
