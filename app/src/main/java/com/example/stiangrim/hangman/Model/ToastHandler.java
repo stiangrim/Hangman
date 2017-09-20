@@ -2,6 +2,7 @@ package com.example.stiangrim.hangman.Model;
 
 import android.content.Context;
 import android.os.Handler;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.example.stiangrim.hangman.R;
@@ -48,6 +49,8 @@ public class ToastHandler {
 
     private Toast getRandomEncouragementToast() {
         int index = randomGenerator.nextInt(encouragementToasts.size());
-        return Toast.makeText(context, encouragementToasts.get(index), Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(context, encouragementToasts.get(index), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP, 0, 800);
+        return toast;
     }
 }
