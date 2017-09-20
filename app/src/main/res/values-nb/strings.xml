@@ -13,7 +13,6 @@
     <string name="youLost">Du tapte.. Det riktige ordet var</string>
     <string name="tryAgain">Prøve igjen?</string>
     <string name="yes">Ja</string>
-    <string name="exitToMenu">Tilbake til hovedmeny</string>
     <string name="words_guessed">Riktige ord:</string>
     <string name="words_not_guessed">Antall tap:</string>
     <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ</string>
@@ -26,4 +25,6 @@
     <string name="wins">Vinn</string>
     <string name="losses">Tap</string>
     <string name="statistics_text">Vinn representerer antall riktige ord gjettet.\nTap representerer antall ord gjettet feil.</string>
+    <string name="no">Nei</string>
+    <string name="Hangman">Hangman</string>
 </resources>

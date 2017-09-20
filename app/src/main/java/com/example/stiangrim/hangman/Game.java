@@ -200,17 +200,17 @@ public class Game extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage(message)
                 .setCancelable(false)
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Game.this, Home.class);
+                        startActivity(intent);
+                    }
+                })
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(Game.this, Game.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton(getString(R.string.exitToMenu), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Game.this, Home.class);
                         startActivity(intent);
                     }
                 });
@@ -277,5 +277,11 @@ public class Game extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         GameDTO gameDTO = new GameDTO(wordHandler, hangmanState, correctLetters, correctGuessedLetters, wrongGuessedLetters);
         outState.putSerializable("game", gameDTO);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Game.this, Home.class);
+        startActivity(intent);
     }
 }

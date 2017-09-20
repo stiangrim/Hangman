@@ -13,7 +13,6 @@
     <string name="youLost">You lost.. The correct word was</string>
     <string name="tryAgain">Try again?</string>
     <string name="yes">Yes</string>
-    <string name="exitToMenu">Exit to Main Menu</string>
     <string name="words_guessed">Correct words:</string>
     <string name="words_not_guessed">Number of losses:</string>
     <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
@@ -26,4 +25,6 @@
     <string name="wins">Wins</string>
     <string name="losses">Losses</string>
     <string name="statistics_text">Wins represents every correct word guessed.\nLosses represents every wrong word guessed.</string>
+    <string name="no">No</string>
+    <string name="Hangman">Hangman</string>
 </resources>
