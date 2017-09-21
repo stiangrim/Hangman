@@ -53,4 +53,15 @@ public class ToastHandler {
         toast.setGravity(Gravity.TOP, 0, 800);
         return toast;
     }
+
+    public void showDataClearedToast(int duration) {
+        final Toast toast = Toast.makeText(context, context.getString(R.string.data_cleared), Toast.LENGTH_SHORT);
+        toast.show();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toast.cancel();
+            }
+        }, duration);
+    }
 }

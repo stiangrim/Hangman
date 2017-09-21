@@ -25,23 +25,23 @@ import com.example.stiangrim.hangman.Model.WordHandler;
 
 public class Game extends AppCompatActivity {
 
-    LinearLayout invisibleWordLayout;
-    TableLayout tableLayout;
-    ImageView hangmanImage;
+    private LinearLayout invisibleWordLayout;
+    private TableLayout tableLayout;
+    private ImageView hangmanImage;
 
-    WordHandler wordHandler;
-    ToastHandler toastHandler;
+    private WordHandler wordHandler;
+    private ToastHandler toastHandler;
 
-    StringBuilder correctGuessedLetters;
-    StringBuilder wrongGuessedLetters;
+    private StringBuilder correctGuessedLetters;
+    private StringBuilder wrongGuessedLetters;
 
-    Drawable red = new PaintDrawable(Color.argb(200, 153, 0, 0));
-    Drawable green = new PaintDrawable(Color.argb(200, 0, 153, 0));
+    private Drawable red = new PaintDrawable(Color.argb(200, 153, 0, 0));
+    private Drawable green = new PaintDrawable(Color.argb(200, 0, 153, 0));
 
-    int hangmanState;
-    int correctLetters;
+    private int hangmanState;
+    private int correctLetters;
 
-    boolean gameRestored = false;
+    private boolean gameRestored = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +173,7 @@ public class Game extends AppCompatActivity {
         placePossibleLetters();
     }
 
-    public void checkLetter(Button button) {
+    private void checkLetter(Button button) {
         char letter = button.getText().charAt(0);
 
         if (wordHandler.letterExists(letter)) {

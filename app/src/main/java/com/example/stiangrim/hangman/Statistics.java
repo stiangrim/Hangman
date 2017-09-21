@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.stiangrim.hangman.Model.StatisticsHandler;
+import com.example.stiangrim.hangman.Model.ToastHandler;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -16,8 +18,6 @@ import java.util.ArrayList;
 
 public class Statistics extends AppCompatActivity {
 
-    PieChart pieChart;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class Statistics extends AppCompatActivity {
     }
 
     private void createPieChart() {
-        pieChart = (PieChart) findViewById(R.id.piegraph);
+        PieChart pieChart = (PieChart) findViewById(R.id.piegraph);
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
@@ -55,5 +55,14 @@ public class Statistics extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
+    }
+
+    public void clearData(View view) {
+        StatisticsHandler.clearAllData(this);
+        Intent intent = new Intent(this, Statistics.class);
+        startActivity(intent);
+
+        ToastHandler toastHandler = new ToastHandler(this);
+        toastHandler.showDataClearedToast(2500);
     }
 }

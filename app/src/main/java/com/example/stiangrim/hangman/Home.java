@@ -10,24 +10,18 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.stiangrim.hangman.Model.LanguageHandler;
-import com.example.stiangrim.hangman.Model.ToastHandler;
 
 import java.util.Locale;
 
 public class Home extends AppCompatActivity {
-
-    ImageView norwegian;
-    ImageView english;
-    ToastHandler toastHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        norwegian = (ImageView) findViewById(R.id.flag_norway);
-        english = (ImageView) findViewById(R.id.flag_united_kingdom);
-        toastHandler = new ToastHandler(this);
+        ImageView norwegian = (ImageView) findViewById(R.id.flag_norway);
+        ImageView english = (ImageView) findViewById(R.id.flag_united_kingdom);
 
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().getBoolean("norwegian")) {

@@ -32,4 +32,6 @@
     <string name="toast_encouragement_2">Herlig!</string>
     <string name="toast_encouragement_3">Glimrende!</string>
     <string name="toast_encouragement_4">Nydelig!</string>
+    <string name="clear_data">Slett Data</string>
+    <string name="data_cleared">All data slettet</string>
 </resources>

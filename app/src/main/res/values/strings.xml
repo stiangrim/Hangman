@@ -32,4 +32,6 @@
     <string name="toast_encouragement_2">Well done!</string>
     <string name="toast_encouragement_3">Amazing!</string>
     <string name="toast_encouragement_4">Fabulous!</string>
+    <string name="clear_data">Clear Data</string>
+    <string name="data_cleared">All data deleted</string>
 </resources>

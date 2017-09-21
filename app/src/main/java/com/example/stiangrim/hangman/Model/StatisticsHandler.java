@@ -36,7 +36,4 @@ public class StatisticsHandler {
     public static int getLosses(Context context) {
         return getPrefs(context).getInt("losses", 0);
     }
-
-
-
 }
