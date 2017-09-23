@@ -34,4 +34,5 @@
     <string name="toast_encouragement_4">Nydelig!</string>
     <string name="clear_data">Slett Data</string>
     <string name="data_cleared">All data slettet</string>
+    <string name="delete_confirmation">Er du sikker på at du vil slette all data?</string>
 </resources>

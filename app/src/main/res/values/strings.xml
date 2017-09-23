@@ -34,4 +34,5 @@
     <string name="toast_encouragement_4">Fabulous!</string>
     <string name="clear_data">Clear Data</string>
     <string name="data_cleared">All data deleted</string>
+    <string name="delete_confirmation">Are you sure you want to delete all data?</string>
 </resources>

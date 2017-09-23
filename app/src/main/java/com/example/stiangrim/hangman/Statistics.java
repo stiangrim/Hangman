@@ -1,8 +1,11 @@
 package com.example.stiangrim.hangman;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -58,11 +61,30 @@ public class Statistics extends AppCompatActivity {
     }
 
     public void clearData(View view) {
-        StatisticsHandler.clearAllData(this);
-        Intent intent = new Intent(this, Statistics.class);
-        startActivity(intent);
+        final Context context = this;
 
-        ToastHandler toastHandler = new ToastHandler(this);
-        toastHandler.showDataClearedToast(2500);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(R.string.delete_confirmation)
+                .setCancelable(false)
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        StatisticsHandler.clearAllData(context);
+                        Intent intent = new Intent(context, Statistics.class);
+                        startActivity(intent);
+
+                        ToastHandler toastHandler = new ToastHandler(context);
+                        toastHandler.showDataClearedToast(2500);
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setTitle(R.string.clear_data);
+        alertDialog.show();
     }
 }
