@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman-s305537/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="ebb3bb91fc9cdcf7e9430ea18a747ad4311c490a">
-        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_57a166e4953b9ea72f4024995d966009872ed775/classes.dex" />
+        sha1="135f5728577e2be98022816bad95d437e851762f">
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman-s305537/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_8e2e2b202960393291a1919235eee5f9b4a4c9b0/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman-s305537/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_3f387359232fd9edfb83165f233e8f907cd7dce9/classes.dex" />
+        <dex dex="/Users/stiantornholmgrimsgaard/StudioProjects/Hangman-s305537/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_d235bdcaf4358c68ecb4c738d5190444d2774d5a/classes.dex" />
     </item>
 
 </items>
